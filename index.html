@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTFPR Quantum · Grupo de Tecnologias Quânticas</title>
+    <!-- Google Fonts: Inter moderna e limpa -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14..32,400..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --utfpr-yellow: #FFD100;
+            --utfpr-black: #000000;
+            --utfpr-white: #FFFFFF;
+            --gray-light: #F8F9FA;
+            --gray-medium: #e9ecef;
+            --text-dark: #212529;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--utfpr-white);
+            line-height: 1.5;
+        }
+
+        /* HEADER STICKY */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--utfpr-white);
+            border-bottom: 1px solid var(--gray-medium);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .navbar {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo a {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--utfpr-black);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .logo span {
+            color: var(--utfpr-black);
+            background-color: var(--utfpr-yellow);
+            padding: 0.1rem 0.4rem;
+            border-radius: 6px;
+            margin-left: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--utfpr-black);
+            transition: color 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover {
+            color: #7f6b00;
+            border-bottom: 2px solid var(--utfpr-yellow);
+            padding-bottom: 0.25rem;
+        }
+
+        /* CONTAINER geral */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: var(--utfpr-white);
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 209, 0, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .hero-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 900px;
+        }
+        .hero h1 span {
+            background-color: var(--utfpr-yellow);
+            color: var(--utfpr-black);
+            padding: 0.2rem 1rem;
+            display: inline-block;
+            border-radius: 40px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        .badge {
+            background-color: var(--utfpr-black);
+            border: 2px solid var(--utfpr-yellow);
+            color: var(--utfpr-yellow);
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn {
+            background-color: var(--utfpr-yellow);
+            color: var(--utfpr-black);
+            font-weight: 600;
+            padding: 0.9rem 2.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: var(--shadow-sm);
+            margin-top: 1rem;
+        }
+        .btn:hover {
+            background-color: #e6bc00;
+            transform: translateY(-2px);
+        }
+
+        /* seções */
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--utfpr-black);
+            border-left: 8px solid var(--utfpr-yellow);
+            padding-left: 1.5rem;
+        }
+
+        .section-light {
+            background-color: var(--gray-light);
+        }
+
+        /* cards linhas de pesquisa */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background: var(--utfpr-white);
+            border-radius: var(--border-radius);
+            padding: 2rem 1.8rem;
+            box-shadow: var(--shadow-sm);
+            transition: 0.2s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--utfpr-black);
+        }
+        .card-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: #4b5563;
+            font-weight: 500;
+            margin-top: 1.2rem;
+        }
+        .card-meta span {
+            background: var(--gray-light);
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+        }
+
+        /* equipe */
+        .tab-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background: none;
+            border: 2px solid transparent;
+            background-color: var(--gray-medium);
+            padding: 0.6rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            color: var(--text-dark);
+        }
+        .tab-btn.active {
+            background-color: var(--utfpr-black);
+            color: var(--utfpr-yellow);
+            border-color: var(--utfpr-yellow);
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 1.5rem;
+        }
+        .team-item {
+            background: var(--utfpr-white);
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-medium);
+        }
+        .team-item .name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+        .team-item .lattes-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            background-color: #f0f0f0;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        .lattes-link:hover {
+            background-color: var(--utfpr-yellow);
+        }
+        .leader-tag {
+            background: var(--utfpr-yellow);
+            color: var(--utfpr-black);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            margin-left: 0.5rem;
+            text-transform: uppercase;
+        }
+        .team-role {
+            font-size: 0.9rem;
+            color: #2c3e50;
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+
+        /* producao academica */
+        .publication-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .pub-item {
+            background: var(--utfpr-white);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            box-shadow: var(--shadow-sm);
+            border-left: 6px solid var(--utfpr-yellow);
+        }
+        .pub-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--utfpr-black);
+        }
+        .pub-authors {
+            color: #3a4a5a;
+            margin-bottom: 0.3rem;
+        }
+        .pub-journal {
+            font-style: italic;
+            color: #5e6b7a;
+        }
+
+        /* parceiros */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+        .partner-card {
+            background: var(--utfpr-white);
+            border-radius: 16px;
+            padding: 1.8rem 1rem;
+            text-align: center;
+            font-weight: 500;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-medium);
+        }
+        .partner-card strong {
+            color: var(--utfpr-black);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .partner-card small {
+            color: #5e6b7a;
+        }
+
+        /* rodapé */
+        footer {
+            background-color: var(--utfpr-black);
+            color: #ddd;
+            padding: 3rem 2rem 2rem;
+            font-size: 0.95rem;
+        }
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+        }
+        .footer-content h4 {
+            color: var(--utfpr-yellow);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .footer-content p, .footer-content a {
+            color: #bbb;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+        .footer-content a:hover {
+            color: var(--utfpr-yellow);
+            text-decoration: underline;
+        }
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            color: #888;
+        }
+
+        /* responsividade */
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* esconder/mostrar abas */
+        .team-category {
+            display: none;
+        }
+        .team-category.active-category {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="#"><span>UTFPR</span> Quantum</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#linhas">Linhas</a></li>
+                <li><a href="#equipe">Equipe</a></li>
+                <li><a href="#producao">Produção</a></li>
+                <li><a href="#parceiros">Parceiros</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="badge">⚛️ Grupo Certificado - CNPq</span>
+                <h1>
+                    Grupo de Tecnologias Quânticas <br>
+                    e Computação Quântica Aplicadas <br>
+                    <span>UTFPR Quantum</span>
+                </h1>
+                <p style="font-size: 1.3rem; max-width: 700px; opacity: 0.9;">Pesquisa teórica e aplicada em ciências quânticas · Formação de recursos humanos · Inovação</p>
+                <a href="#linhas" class="btn">Conheça nossas pesquisas →</a>
+            </div>
+        </section>
+
+        <!-- SOBRE (REPERCUSSÕES) -->
+        <section id="sobre" class="container">
+            <h2>Sobre o grupo</h2>
+            <div style="background: var(--gray-light); border-radius: 24px; padding: 2.5rem;">
+                <p style="font-size: 1.2rem; max-width: 1000px; margin-bottom: 1.5rem; color: #2e2e2e;">
+                    <strong>Repercussões científicas, tecnológicas e socioeconômicas</strong>
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.7;">
+                    O grupo UTFPR Quantum atuará na fronteira das Tecnologias Quânticas, área estratégica global. 
+                    Sua estrutura multicampi integra competências teóricas e aplicadas. A repercussão científica se dará por publicações, 
+                    formação de recursos humanos e inserção em redes nacionais (Programa de Tecnologias Quânticas) e internacionais 
+                    (parceria com C-DAC/Índia). O impacto tecnológico virá do desenvolvimento de algoritmos e protótipos, e o 
+                    socioeconômico, da transferência de conhecimento ao setor produtivo, consolidando a UTFPR como referência regional.
+                </p>
+                <div style="margin-top: 2rem; display: flex; gap: 2rem; flex-wrap: wrap; font-weight: 500;">
+                    <span>✅ Ano de formação: <strong>2025</strong></span>
+                    <span>🔬 Área: <strong>Ciências Exatas e da Terra; Física</strong></span>
+                    <span>🧪 Líder: <strong>Bruno Luiz Santana Vicentin</strong></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINHAS DE PESQUISA (CARDS) -->
+        <section id="linhas" class="container section-light" style="border-radius: 48px 48px 0 0;">
+            <h2>Linhas de pesquisa</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🧠 Computação Quântica e Inteligência Computacional</h3>
+                    <p>Desenvolvimento de algoritmos quânticos e hibridização com IA.</p>
+                    <div class="card-meta">
+                        <span>👩‍🎓 4 estudantes</span>
+                        <span>👨‍🔬 6 pesquisadores</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>⚛️ Simulação e Modelagem de Sistemas Quânticos</h3>
+                    <p>Simulação numérica de materiais quânticos e fenômenos complexos.</p>
+                    <div class="card-meta">
+                        <span>👩‍🎓 0 estudantes</span>
+                        <span>👨‍🔬 8 pesquisadores</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🔧 Tecnologias Quânticas Aplicadas e Instrumentação</h3>
+                    <p>Protótipos, sensores quânticos e instrumentação de ponta.</p>
+                    <div class="card-meta">
+                        <span>👩‍🎓 0 estudantes</span>
+                        <span>👨‍🔬 6 pesquisadores</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EQUIPE COM ABAS (JS) -->
+        <section id="equipe" class="container">
+            <h2>Nossa equipe</h2>
+            <div class="tab-buttons">
+                <button class="tab-btn active" id="tab-pesq">Pesquisadores (doutores)</button>
+                <button class="tab-btn" id="tab-estud">Estudantes (graduação)</button>
+                <button class="tab-btn" id="tab-colab">Colaboradores estrangeiros</button>
+            </div>
+
+            <!-- Categoria Pesquisadores (COM LINKS LATTES REAIS) -->
+            <div id="categoria-pesquisadores" class="team-category active-category">
+                <div class="team-grid">
+                    <!-- lista de pesquisadores com doutorado (conforme solicitado) -->
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Bruno Luiz Santana Vicentin</a> <span class="leader-tag">Líder</span></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/8341696395309967" class="lattes-link">🔗 Lattes</a></div>
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Carlos Alexandre Brasil</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/5275304739793101" class="lattes-link">🔗 Lattes</a></div>
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Cassio Henrique dos Santos Amador</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/6506728481019083" class="lattes-link">🔗 Lattes</a></div>
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Charlie Antoni Miquelin</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/2797875007644990" class="lattes-link">🔗 Lattes</a></div>
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Cosmo Damião Santiago</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/6835681694355609" class="lattes-link">🔗 Lattes</a></div>
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Ezequiel Costa Siqueira</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/9391202984476815" class="lattes-link">🔗 Lattes</a></div>
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Fabio Alexandre Spanhol</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/4381300863323095" class="lattes-link">🔗 Lattes</a></div>
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Felipe de Almeida La Porta</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/9613088203057046" class="lattes-link">🔗 Lattes</a></div>
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Gylles Ricardo Ströher</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/1839299911715672" class="lattes-link">🔗 Lattes</a></div>
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Leandro Miranda Zatesko</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/4259616811045288" class="lattes-link">🔗 Lattes</a></div>
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Ricardo Fernandes da Silva</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/0595767132346835" class="lattes-link">🔗 Lattes</a></div>
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Tiago Debarba</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/2962457584568702" class="lattes-link">🔗 Lattes</a></div>
+                    <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Walmor Cardoso Godoi</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/1099680203756198" class="lattes-link">🔗 Lattes</a></div>
+                </div>
+            </div>
+
+            <!-- Categoria Estudantes -->
+            <div id="categoria-estudantes" class="team-category">
+                <div class="team-grid">
+                    <div class="team-item"><div class="name">Davy Mateus Nzamba</div><div class="team-role">Graduando</div></div>
+                    <div class="team-item"><div class="name">Isabela Ribeiro de Oliveira</div><div class="team-role">Graduanda</div></div>
+                    <div class="team-item"><div class="name">João Francisco Barcala Paulo</div><div class="team-role">Graduando</div></div>
+                    <div class="team-item"><div class="name">Maria Eduarda Cardoso de Oliveira</div><div class="team-role">Graduanda</div></div>
+                </div>
+            </div>
+
+            <!-- Categoria Colaboradores estrangeiros -->
+            <div id="categoria-colaboradores" class="team-category">
+                <div class="team-grid">
+                    <div class="team-item"><div class="name">Daina Dayana Arenas Buelvas</div><div class="team-role">Colômbia · Pesquisadora</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOVA SEÇÃO: PRODUÇÃO ACADÊMICA -->
+        <section id="producao" class="container section-light" style="border-radius: 48px 48px 0 0;">
+            <h2>Produção acadêmica</h2>
+            <div class="publication-list">
+    <!-- Bruno Vicentin (2023) -->
+    <div class="pub-item">
+        <div class="pub-title">Study and optimization of the adsorption process of methylene blue dye in reusable polyaniline-magnetite composites</div>
+        <div class="pub-authors">Bruno Luiz Santana Vicentin et al.</div>
+        <div class="pub-journal">Synthetic Metals, 2023</div>
+        <div style="margin-top: 0.5rem;">
+            <span style="background: #FFD100; padding: 0.2rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">simulação e modelagem</span>
+        </div>
+        <button class="cite-btn" style="margin-top: 1rem; background: none; border: 1px solid #ccc; padding: 0.3rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem;">📖 Cite este artigo</button>
+        <div class="cite-dropdown" style="display: none; margin-top: 1rem; background: #f1f3f5; padding: 1rem; border-radius: 8px; font-size: 0.9rem; border-left: 4px solid #FFD100;">
+            <strong>APA:</strong> Vicentin, B. L. S. et al. (2023). Study and optimization of the adsorption process of methylene blue dye in reusable polyaniline-magnetite composites. <em>Synthetic Metals</em>.
+        </div>
+    </div>
+
+    <!-- Ricardo Silva (2024) -->
+    <div class="pub-item">
+        <div class="pub-title">
+            <a href="https://doi.org/10.1504/IJBC.2024.143407" target="_blank">A blockchain architecture with quantum key distribution (QKD)</a>
+        </div>
+        <div class="pub-authors">Ricardo Fernandes da Silva, A. Silva</div>
+        <div class="pub-journal">International Journal of Blockchains and Cryptocurrencies, v. 5, p. 161-170, 2024</div>
+        <div style="margin-top: 0.5rem;">
+            <span style="background: #FFD100; padding: 0.2rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">tecnologias quânticas aplicadas</span>
+        </div>
+        <button class="cite-btn" style="margin-top: 1rem; background: none; border: 1px solid #ccc; padding: 0.3rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem;">📖 Cite este artigo</button>
+        <div class="cite-dropdown" style="display: none; margin-top: 1rem; background: #f1f3f5; padding: 1rem; border-radius: 8px; font-size: 0.9rem; border-left: 4px solid #FFD100;">
+            <strong>APA:</strong> Silva, R. F., & Silva, A. (2024). A blockchain architecture with quantum key distribution (QKD). <em>International Journal of Blockchains and Cryptocurrencies</em>, 5, 161-170. <a href="https://doi.org/10.1504/IJBC.2024.143407" target="_blank">https://doi.org/10.1504/IJBC.2024.143407</a>
+        </div>
+    </div>
+
+    <!-- Tiago Debarba (2026) -->
+    <div class="pub-item">
+        <div class="pub-title">
+            <a href="https://doi.org/10.1103/3312-b63x" target="_blank">Thermodynamic constraints on the emergence of intersubjectivity in quantum systems</a>
+        </div>
+        <div class="pub-authors">Tiago Debarba et al.</div>
+        <div class="pub-journal">Physical Review A, 2026</div>
+        <div style="margin-top: 0.5rem;">
+            <span style="background: #FFD100; padding: 0.2rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">tecnologias quânticas aplicadas</span>
+        </div>
+        <button class="cite-btn" style="margin-top: 1rem; background: none; border: 1px solid #ccc; padding: 0.3rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem;">📖 Cite este artigo</button>
+        <div class="cite-dropdown" style="display: none; margin-top: 1rem; background: #f1f3f5; padding: 1rem; border-radius: 8px; font-size: 0.9rem; border-left: 4px solid #FFD100;">
+            <strong>APA:</strong> Debarba, T. et al. (2026). Thermodynamic constraints on the emergence of intersubjectivity in quantum systems. <em>Physical Review A</em>. <a href="https://doi.org/10.1103/3312-b63x" target="_blank">https://doi.org/10.1103/3312-b63x</a>
+        </div>
+    </div>
+
+    <!-- Tiago Debarba (2025) -->
+    <div class="pub-item">
+        <div class="pub-title">
+            <a href="https://doi.org/10.1103/vjvj-sz12" target="_blank">Thermodynamic constraints on information transmission in quantum ensembles</a>
+        </div>
+        <div class="pub-authors">Tiago Debarba et al.</div>
+        <div class="pub-journal">Physical Review A, 2025</div>
+        <div style="margin-top: 0.5rem;">
+            <span style="background: #FFD100; padding: 0.2rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">tecnologias quânticas aplicadas</span>
+        </div>
+        <button class="cite-btn" style="margin-top: 1rem; background: none; border: 1px solid #ccc; padding: 0.3rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem;">📖 Cite este artigo</button>
+        <div class="cite-dropdown" style="display: none; margin-top: 1rem; background: #f1f3f5; padding: 1rem; border-radius: 8px; font-size: 0.9rem; border-left: 4px solid #FFD100;">
+            <strong>APA:</strong> Debarba, T. et al. (2025). Thermodynamic constraints on information transmission in quantum ensembles. <em>Physical Review A</em>. <a href="https://doi.org/10.1103/vjvj-sz12" target="_blank">https://doi.org/10.1103/vjvj-sz12</a>
+        </div>
+    </div>
+
+    <!-- Tiago Debarba (2025) Entropy -->
+    <div class="pub-item">
+        <div class="pub-title">
+            <a href="https://doi.org/10.3390/e27080824" target="_blank">A Complexity-Based Approach to Quantum Observable Equilibration</a>
+        </div>
+        <div class="pub-authors">Tiago Debarba et al.</div>
+        <div class="pub-journal">Entropy, 2025</div>
+        <div style="margin-top: 0.5rem;">
+            <span style="background: #FFD100; padding: 0.2rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">simulação e modelagem</span>
+        </div>
+        <button class="cite-btn" style="margin-top: 1rem; background: none; border: 1px solid #ccc; padding: 0.3rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem;">📖 Cite este artigo</button>
+        <div class="cite-dropdown" style="display: none; margin-top: 1rem; background: #f1f3f5; padding: 1rem; border-radius: 8px; font-size: 0.9rem; border-left: 4px solid #FFD100;">
+            <strong>APA:</strong> Debarba, T. et al. (2025). A Complexity-Based Approach to Quantum Observable Equilibration. <em>Entropy</em>. <a href="https://doi.org/10.3390/e27080824" target="_blank">https://doi.org/10.3390/e27080824</a>
+        </div>
+    </div>
+
+    <!-- Tiago Debarba (2025) PRX Quantum -->
+    <div class="pub-item">
+        <div class="pub-title">
+            <a href="https://doi.org/10.1103/PRXQuantum.6.010309" target="_blank">Emergence of a second law of thermodynamics in isolated quantum systems</a>
+        </div>
+        <div class="pub-authors">Tiago Debarba et al.</div>
+        <div class="pub-journal">PRX Quantum, 2025</div>
+        <div style="margin-top: 0.5rem;">
+            <span style="background: #FFD100; padding: 0.2rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">simulação e modelagem</span>
+        </div>
+        <button class="cite-btn" style="margin-top: 1rem; background: none; border: 1px solid #ccc; padding: 0.3rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem;">📖 Cite este artigo</button>
+        <div class="cite-dropdown" style="display: none; margin-top: 1rem; background: #f1f3f5; padding: 1rem; border-radius: 8px; font-size: 0.9rem; border-left: 4px solid #FFD100;">
+            <strong>APA:</strong> Debarba, T. et al. (2025). Emergence of a second law of thermodynamics in isolated quantum systems. <em>PRX Quantum</em>, 6, 010309. <a href="https://doi.org/10.1103/PRXQuantum.6.010309" target="_blank">https://doi.org/10.1103/PRXQuantum.6.010309</a>
+        </div>
+    </div>
+
+    <!-- Tiago Debarba (2024) -->
+    <div class="pub-item">
+        <div class="pub-title">
+            <a href="https://doi.org/10.1103/PhysRevA.110.L010404" target="_blank">Fermionic anyons: Entanglement and quantum computation from a resource-theoretic perspective</a>
+        </div>
+        <div class="pub-authors">Tiago Debarba et al.</div>
+        <div class="pub-journal">Physical Review A, 110, L010404, 2024</div>
+        <div style="margin-top: 0.5rem;">
+            <span style="background: #FFD100; padding: 0.2rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">computação quântica</span>
+        </div>
+        <button class="cite-btn" style="margin-top: 1rem; background: none; border: 1px solid #ccc; padding: 0.3rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem;">📖 Cite este artigo</button>
+        <div class="cite-dropdown" style="display: none; margin-top: 1rem; background: #f1f3f5; padding: 1rem; border-radius: 8px; font-size: 0.9rem; border-left: 4px solid #FFD100;">
+            <strong>APA:</strong> Debarba, T. et al. (2024). Fermionic anyons: Entanglement and quantum computation from a resource-theoretic perspective. <em>Physical Review A</em>, 110, L010404. <a href="https://doi.org/10.1103/PhysRevA.110.L010404" target="_blank">https://doi.org/10.1103/PhysRevA.110.L010404</a>
+        </div>
+    </div>
+</div>
+
+<!-- Script para funcionalidade dos botões "Cite este artigo" -->
+<script>
+    (function() {
+        // Adiciona evento para todos os botões de citação (inclusive os que forem adicionados dinamicamente)
+        document.querySelectorAll('.cite-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // O dropdown é o próximo elemento irmão (div.cite-dropdown)
+                const dropdown = this.nextElementSibling;
+                if (dropdown && dropdown.classList.contains('cite-dropdown')) {
+                    // Alterna a exibição
+                    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                        dropdown.style.display = 'block';
+                    } else {
+                        dropdown.style.display = 'none';
+                    }
+                }
+            });
+        });
+    })();
+</script>
+            <p style="margin-top: 2rem; text-align: right;"><a href="#" style="color: var(--utfpr-black); font-weight: 600;">+ todas as publicações no Google Scholar &rarr;</a></p>
+        </section>
+
+        <!-- PARCEIROS & INCTs -->
+        <section id="parceiros" class="container section-light" style="border-radius: 0 0 48px 48px;">
+            <h2>Instituições Parceiras & INCTs</h2>
+            <div class="partners-grid">
+                <div class="partner-card"><strong>IFSC/USP</strong><small>Instituto de Física de São Carlos</small></div>
+                <div class="partner-card"><strong>LACTEC</strong><small>Institutos Lactec - PR</small></div>
+                <div class="partner-card"><strong>SENAI CIMATEC</strong><small>CIMATEC - BA</small></div>
+                <div class="partner-card"><strong>Instituto Synapse</strong><small>ICT Parceira</small></div>
+                <div class="partner-card"><strong>CEITEC Brno</strong><small>Rep. Tcheca</small></div>
+                <div class="partner-card"><strong>INCT Informação Quântica</strong><small>parceira estratégica</small></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER / CONTATO -->
+    <footer id="contato">
+        <div class="footer-content">
+            <div>
+                <h4>UTFPR Quantum</h4>
+                <p>Grupo de Tecnologias Quânticas e Computação Quântica Aplicadas</p>
+                <p>📅 Formado em 2025 · <a href="http://dgp.cnpq.br/dgp/espelhogrupo/3221567408939926" target="_blank">Espelho CNPq</a></p>
+            </div>
+            <div>
+                <h4>Endereço</h4>
+                <p>UTFPR Campus Apucarana<br>
+                Rua Marcílio Dias, 635 - Jardim Paraíso<br>
+                Apucarana - PR, CEP: 86812460</p>
+            </div>
+            <div>
+                <h4>Contato</h4>
+                <p>📧 <a href="mailto:brunovicentin@utfpr.edu.br">brunovicentin@utfpr.edu.br</a></p>
+                <p>📞 (43) 98870-1881</p>
+                <p>🔗 <a href="http://dgp.cnpq.br/dgp/espelhogrupo/3221567408939926" target="_blank">dgp.cnpq.br/espelhogrupo/3221567408939926</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 UTFPR Quantum · Universidade Tecnológica Federal do Paraná · Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // SMOOTH SCROLL para links da navbar
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href'); // ex: #sobre
+                    if (targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // SISTEMA DE ABAS (EQUIPE)
+            const tabPesq = document.getElementById('tab-pesq');
+            const tabEstud = document.getElementById('tab-estud');
+            const tabColab = document.getElementById('tab-colab');
+            
+            const catPesq = document.getElementById('categoria-pesquisadores');
+            const catEstud = document.getElementById('categoria-estudantes');
+            const catColab = document.getElementById('categoria-colaboradores');
+            
+            function activateTab(activeBtn, activeCat) {
+                [tabPesq, tabEstud, tabColab].forEach(btn => btn.classList.remove('active'));
+                [catPesq, catEstud, catColab].forEach(cat => cat.classList.remove('active-category'));
+                
+                activeBtn.classList.add('active');
+                activeCat.classList.add('active-category');
+            }
+            
+            tabPesq.addEventListener('click', () => activateTab(tabPesq, catPesq));
+            tabEstud.addEventListener('click', () => activateTab(tabEstud, catEstud));
+            tabColab.addEventListener('click', () => activateTab(tabColab, catColab));
+        })();
+    </script>
+    <script>
+        (function() {
+            document.querySelector('.btn')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector('#linhas');
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        })();
+    </script>
+</body>
+</html>
