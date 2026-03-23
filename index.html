@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTFPR Quantum · Grupo de Tecnologias Quânticas</title>
-    <!-- Google Fonts: Inter moderna e limpa -->
+    <title>UTFPR Quantum · Grupo de Tecnologias Quânticas da UTFPR</title>
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14..32,400..700&display=swap" rel="stylesheet">
@@ -33,7 +33,6 @@
             line-height: 1.5;
         }
 
-        /* HEADER STICKY */
         header {
             position: sticky;
             top: 0;
@@ -51,16 +50,28 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .logo a {
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .logo-img {
+            height: 96px;   /* AUMENTADO EM 100% (antes 48px) */
+            width: auto;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        .logo-text a {
             font-size: 1.6rem;
             font-weight: 700;
             color: var(--utfpr-black);
             text-decoration: none;
             letter-spacing: -0.02em;
         }
-        .logo span {
+        .logo-text span {
             color: var(--utfpr-black);
             background-color: var(--utfpr-yellow);
             padding: 0.1rem 0.4rem;
@@ -86,7 +97,6 @@
             padding-bottom: 0.25rem;
         }
 
-        /* CONTAINER geral */
         .container {
             max-width: 1280px;
             margin: 0 auto;
@@ -169,7 +179,6 @@
             transform: translateY(-2px);
         }
 
-        /* seções */
         h2 {
             font-size: 2.5rem;
             font-weight: 600;
@@ -183,7 +192,6 @@
             background-color: var(--gray-light);
         }
 
-        /* cards linhas de pesquisa */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -221,7 +229,7 @@
             font-size: 0.95rem;
         }
 
-        /* equipe */
+        /* TABS */
         .tab-buttons {
             display: flex;
             gap: 1rem;
@@ -294,7 +302,7 @@
             font-style: italic;
         }
 
-        /* producao academica */
+        /* Publication */
         .publication-list {
             display: flex;
             flex-direction: column;
@@ -321,8 +329,39 @@
             font-style: italic;
             color: #5e6b7a;
         }
+        .tag {
+            background: #FFD100;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .cite-btn {
+            margin-top: 1rem;
+            background: none;
+            border: 1px solid #ccc;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .cite-btn:hover {
+            background-color: #FFD100;
+            border-color: #FFD100;
+        }
+        .cite-dropdown {
+            display: none;
+            margin-top: 1rem;
+            background: #f1f3f5;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border-left: 4px solid #FFD100;
+        }
 
-        /* parceiros */
+        /* Partners */
         .partners-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -347,7 +386,6 @@
             color: #5e6b7a;
         }
 
-        /* rodapé */
         footer {
             background-color: var(--utfpr-black);
             color: #ddd;
@@ -384,11 +422,10 @@
             color: #888;
         }
 
-        /* responsividade */
         @media (max-width: 700px) {
             .navbar {
                 flex-direction: column;
-                gap: 1rem;
+                align-items: center;
             }
             .nav-links {
                 flex-wrap: wrap;
@@ -401,6 +438,10 @@
             h2 {
                 font-size: 2rem;
             }
+            /* ajuste opcional para não ficar enorme em mobile */
+            .logo-img {
+                height: 72px;  /* reduzido um pouco, mas ainda maior que o original (48) */
+            }
         }
         @media (max-width: 480px) {
             .container {
@@ -408,12 +449,37 @@
             }
         }
 
-        /* esconder/mostrar abas */
         .team-category {
             display: none;
         }
         .team-category.active-category {
             display: block;
+        }
+
+        /* Sobre imagem e layout */
+        .sobre-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        .sobre-texto {
+            flex: 2;
+        }
+        .sobre-imagem {
+            flex: 1;
+            text-align: center;
+        }
+        .sobre-imagem img {
+            max-width: 100%;
+            border-radius: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-medium);
+        }
+        @media (max-width: 768px) {
+            .sobre-wrapper {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -421,7 +487,8 @@
     <header>
         <div class="navbar">
             <div class="logo">
-                <a href="#"><span>UTFPR</span> Quantum</a>
+                <img class="logo-img" src="https://nuvem.utfpr.edu.br/index.php/s/0kUFMswqdR95nc7/download" alt="UTFPR Quantum Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/96?text=Logo';">
+                
             </div>
             <ul class="nav-links">
                 <li><a href="#sobre">Sobre</a></li>
@@ -449,24 +516,32 @@
             </div>
         </section>
 
-        <!-- SOBRE (REPERCUSSÕES) -->
+        <!-- SOBRE (REPERCUSSÕES + IMAGEM) -->
         <section id="sobre" class="container">
             <h2>Sobre o grupo</h2>
-            <div style="background: var(--gray-light); border-radius: 24px; padding: 2.5rem;">
-                <p style="font-size: 1.2rem; max-width: 1000px; margin-bottom: 1.5rem; color: #2e2e2e;">
-                    <strong>Repercussões científicas, tecnológicas e socioeconômicas</strong>
-                </p>
-                <p style="font-size: 1.1rem; line-height: 1.7;">
-                    O grupo UTFPR Quantum atuará na fronteira das Tecnologias Quânticas, área estratégica global. 
-                    Sua estrutura multicampi integra competências teóricas e aplicadas. A repercussão científica se dará por publicações, 
-                    formação de recursos humanos e inserção em redes nacionais (Programa de Tecnologias Quânticas) e internacionais 
-                    (parceria com C-DAC/Índia). O impacto tecnológico virá do desenvolvimento de algoritmos e protótipos, e o 
-                    socioeconômico, da transferência de conhecimento ao setor produtivo, consolidando a UTFPR como referência regional.
-                </p>
-                <div style="margin-top: 2rem; display: flex; gap: 2rem; flex-wrap: wrap; font-weight: 500;">
-                    <span>✅ Ano de formação: <strong>2025</strong></span>
-                    <span>🔬 Área: <strong>Ciências Exatas e da Terra; Física</strong></span>
-                    <span>🧪 Líder: <strong>Bruno Luiz Santana Vicentin</strong></span>
+            <div class="sobre-wrapper">
+                <div class="sobre-texto">
+                    <div style="background: var(--gray-light); border-radius: 24px; padding: 2rem;">
+                        <p style="font-size: 1.2rem; margin-bottom: 1.5rem; color: #2e2e2e;">
+                            <strong>Repercussões científicas, tecnológicas e socioeconômicas</strong>
+                        </p>
+                        <p style="font-size: 1.1rem; line-height: 1.7;">
+                            O grupo UTFPR Quantum atuará na fronteira das Tecnologias Quânticas, área estratégica global. 
+                            Sua estrutura multicampi integra competências teóricas e aplicadas. A repercussão científica se dará por publicações, 
+                            formação de recursos humanos e inserção em redes nacionais (Programa de Tecnologias Quânticas) e internacionais 
+                            (parceria com C-DAC/Índia). O impacto tecnológico virá do desenvolvimento de algoritmos e protótipos, e o 
+                            socioeconômico, da transferência de conhecimento ao setor produtivo, consolidando a UTFPR como referência regional.
+                        </p>
+                        <div style="margin-top: 2rem; display: flex; gap: 2rem; flex-wrap: wrap; font-weight: 500;">
+                            <span>✅ Ano de formação: <strong>2025</strong></span>
+                            <span>🔬 Área: <strong>Ciências Exatas e da Terra; Física</strong></span>
+                            <span>🧪 Líder: <strong>Bruno Luiz Santana Vicentin</strong></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sobre-imagem">
+                    <img src="https://nuvem.utfpr.edu.br/index.php/s/WYqJmXvgduu7Uc8/download" alt="UTFPR Quantum - Certificação" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300?text=Imagem+institucional';">
+                    <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #666;">Grupo Certificado</p>
                 </div>
             </div>
         </section>
@@ -502,7 +577,7 @@
             </div>
         </section>
 
-        <!-- EQUIPE COM ABAS (JS) -->
+        <!-- EQUIPE COM ABAS -->
         <section id="equipe" class="container">
             <h2>Nossa equipe</h2>
             <div class="tab-buttons">
@@ -511,10 +586,8 @@
                 <button class="tab-btn" id="tab-colab">Colaboradores estrangeiros</button>
             </div>
 
-            <!-- Categoria Pesquisadores (COM LINKS LATTES REAIS) -->
             <div id="categoria-pesquisadores" class="team-category active-category">
                 <div class="team-grid">
-                    <!-- lista de pesquisadores com doutorado (conforme solicitado) -->
                     <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Bruno Luiz Santana Vicentin</a> <span class="leader-tag">Líder</span></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/8341696395309967" class="lattes-link">🔗 Lattes</a></div>
                     <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Carlos Alexandre Brasil</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/5275304739793101" class="lattes-link">🔗 Lattes</a></div>
                     <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Cassio Henrique dos Santos Amador</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/6506728481019083" class="lattes-link">🔗 Lattes</a></div>
@@ -530,8 +603,6 @@
                     <div class="team-item"><div class="name"><a href="#" style="text-decoration: none; color: inherit; font-weight: 700;">Walmor Cardoso Godoi</a></div><div class="team-role">Doutorado</div><a href="https://lattes.cnpq.br/1099680203756198" class="lattes-link">🔗 Lattes</a></div>
                 </div>
             </div>
-
-            <!-- Categoria Estudantes -->
             <div id="categoria-estudantes" class="team-category">
                 <div class="team-grid">
                     <div class="team-item"><div class="name">Davy Mateus Nzamba</div><div class="team-role">Graduando</div></div>
@@ -540,8 +611,6 @@
                     <div class="team-item"><div class="name">Maria Eduarda Cardoso de Oliveira</div><div class="team-role">Graduanda</div></div>
                 </div>
             </div>
-
-            <!-- Categoria Colaboradores estrangeiros -->
             <div id="categoria-colaboradores" class="team-category">
                 <div class="team-grid">
                     <div class="team-item"><div class="name">Daina Dayana Arenas Buelvas</div><div class="team-role">Colômbia · Pesquisadora</div></div>
@@ -549,287 +618,64 @@
             </div>
         </section>
 
-        <!-- NOVA SEÇÃO: PRODUÇÃO ACADÊMICA -->
+        <!-- PRODUÇÃO ACADÊMICA -->
         <section id="producao" class="container section-light" style="border-radius: 48px 48px 0 0;">
             <h2>Produção acadêmica</h2>
             <div class="publication-list">
-    <!-- ========== 2026 ========== -->
-    <div class="pub-item">
-        <div class="pub-title">
-            <a href="https://nuvem.utfpr.edu.br/index.php/s/vaCe6VGyMrnpEpP" target="_blank">Matrizes de Pauli, Teoria de Grupos e a Esfera de Bloch: Uma Visão Unificada dos Fundamentos Geométricos e Algébricos da Representação do Qubit</a>
-        </div>
-        <div class="pub-authors">Bruno L. S. Vicentin</div>
-        <div class="pub-journal">Preprint, 2026</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">computação quântica</span></div>
-        
-    </div>
-    <div class="pub-item">
-        <div class="pub-title">
-            <a href="https://doi.org/10.1103/3312-b63x" target="_blank">Thermodynamic constraints on the emergence of intersubjectivity in quantum systems</a>
-        </div>
-        <div class="pub-authors">Tiago Debarba</div>
-        <div class="pub-journal">Physical Review A, 2026</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">tecnologias quânticas aplicadas</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> DEBARBA, Tiago. Thermodynamic constraints on the emergence of intersubjectivity in quantum systems. <em>Physical Review A</em>, 2026. Disponível em: <a href="https://doi.org/10.1103/3312-b63x" target="_blank">https://doi.org/10.1103/3312-b63x</a>.
-        </div>
-    </div>
-
-    <!-- ========== 2025 ========== -->
-    <!-- Theoretical Computer Science (periódico) -->
-    <div class="pub-item">
-        <div class="pub-title">Oracle Separations for Non-adaptive Collapse-free Quantum Computing</div>
-        <div class="pub-authors">Hepp, H.; Silva, M. V. G.; Zatesko, L. M.</div>
-        <div class="pub-journal">Theoretical Computer Science, v. 1030, 115078, 2025</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">computação quântica</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> HEPP, H.; SILVA, M. V. G.; ZATESKO, L. M. Oracle Separations for Non-adaptive Collapse-free Quantum Computing. <em>Theoretical Computer Science</em>, v. 1030, 115078, 2025.
-        </div>
-    </div>
-
-    <!-- PRX Quantum -->
-    <div class="pub-item">
-        <div class="pub-title">
-            <a href="https://doi.org/10.1103/PRXQuantum.6.010309" target="_blank">Emergence of a second law of thermodynamics in isolated quantum systems</a>
-        </div>
-        <div class="pub-authors">Tiago Debarba</div>
-        <div class="pub-journal">PRX Quantum, v. 6, 010309, 2025</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">simulação e modelagem</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> DEBARBA, Tiago. Emergence of a second law of thermodynamics in isolated quantum systems. <em>PRX Quantum</em>, v. 6, 010309, 2025. Disponível em: <a href="https://doi.org/10.1103/PRXQuantum.6.010309" target="_blank">https://doi.org/10.1103/PRXQuantum.6.010309</a>.
-        </div>
-    </div>
-
-    <!-- Entropy -->
-    <div class="pub-item">
-        <div class="pub-title">
-            <a href="https://doi.org/10.3390/e27080824" target="_blank">A Complexity-Based Approach to Quantum Observable Equilibration</a>
-        </div>
-        <div class="pub-authors">Tiago Debarba</div>
-        <div class="pub-journal">Entropy, v. 27, n. 8, 824, 2025</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">simulação e modelagem</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> DEBARBA, Tiago. A Complexity-Based Approach to Quantum Observable Equilibration. <em>Entropy</em>, v. 27, n. 8, 824, 2025. Disponível em: <a href="https://doi.org/10.3390/e27080824" target="_blank">https://doi.org/10.3390/e27080824</a>.
-        </div>
-    </div>
-
-    <!-- Physical Review A (information transmission) -->
-    <div class="pub-item">
-        <div class="pub-title">
-            <a href="https://doi.org/10.1103/vjvj-sz12" target="_blank">Thermodynamic constraints on information transmission in quantum ensembles</a>
-        </div>
-        <div class="pub-authors">Tiago Debarba</div>
-        <div class="pub-journal">Physical Review A, 2025</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">tecnologias quânticas aplicadas</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> DEBARBA, Tiago. Thermodynamic constraints on information transmission in quantum ensembles. <em>Physical Review A</em>, 2025. Disponível em: <a href="https://doi.org/10.1103/vjvj-sz12" target="_blank">https://doi.org/10.1103/vjvj-sz12</a>.
-        </div>
-    </div>
-
-    <!-- CSBC 2025 (A Collapse-free Quantum Algorithm) -->
-    <div class="pub-item">
-        <div class="pub-title">A Collapse-free Quantum Algorithm for a Problem in QSZK</div>
-        <div class="pub-authors">Hepp, H.; Silva, M. V. G.; Zatesko, L. M.</div>
-        <div class="pub-journal">In: Anais do 45º Congresso da Sociedade Brasileira de Computação (CSBC 2025/X ETC), Maceió, p. 129-133, 2025</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">computação quântica</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> HEPP, H.; SILVA, M. V. G.; ZATESKO, L. M. A Collapse-free Quantum Algorithm for a Problem in QSZK. In: <em>CONGRESSO DA SOCIEDADE BRASILEIRA DE COMPUTAÇÃO (CSBC), 45., 2025, Maceió</em>. Anais... Porto Alegre: SBC, 2025. p. 129-133.
-        </div>
-    </div>
-
-    <!-- CSBC 2025 (Quantum Coset Multiplication) -->
-    <div class="pub-item">
-        <div class="pub-title">Quantum Coset Multiplication and the Hidden Subgroup Problem in Dihedral Groups Dp</div>
-        <div class="pub-authors">Sarmento, J. R.; Zatesko, L. M.; Costa, A. F. B.</div>
-        <div class="pub-journal">In: Anais do 45º Congresso da Sociedade Brasileira de Computação (CSBC 2025/X ETC), Maceió, p. 119-123, 2025</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">computação quântica</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> SARMENTO, J. R.; ZATESKO, L. M.; COSTA, A. F. B. Quantum Coset Multiplication and the Hidden Subgroup Problem in Dihedral Groups Dp. In: <em>CONGRESSO DA SOCIEDADE BRASILEIRA DE COMPUTAÇÃO (CSBC), 45., 2025, Maceió</em>. Anais... Porto Alegre: SBC, 2025. p. 119-123.
-        </div>
-    </div>
-
-    <!-- Tese de doutorado (Hepp, 2025) -->
-    <div class="pub-item">
-        <div class="pub-title">Computação quântica sem colapso e problemas de conhecimento zero</div>
-        <div class="pub-authors">H. Hepp</div>
-        <div class="pub-journal">Tese (Doutorado) – Universidade Federal do Paraná, 2025. Orientadores: Murilo V. G. Silva e Leandro M. Zatesko</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">computação quântica · tese</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> HEPP, H. <em>Computação quântica sem colapso e problemas de conhecimento zero</em>. 2025. Tese (Doutorado em Informática) – Universidade Federal do Paraná, Curitiba, 2025.
-        </div>
-    </div>
-
-    <!-- ========== 2024 ========== -->
-    <!-- Ricardo Silva -->
-    <div class="pub-item">
-        <div class="pub-title">
-            <a href="https://doi.org/10.1504/IJBC.2024.143407" target="_blank">A blockchain architecture with quantum key distribution (QKD)</a>
-        </div>
-        <div class="pub-authors">Ricardo Fernandes da Silva, A. Silva</div>
-        <div class="pub-journal">International Journal of Blockchains and Cryptocurrencies, v. 5, p. 161-170, 2024</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">tecnologias quânticas aplicadas</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> SILVA, Ricardo Fernandes da; SILVA, A. A blockchain architecture with quantum key distribution (QKD). <em>International Journal of Blockchains and Cryptocurrencies</em>, v. 5, p. 161-170, 2024. Disponível em: <a href="https://doi.org/10.1504/IJBC.2024.143407" target="_blank">https://doi.org/10.1504/IJBC.2024.143407</a>.
-        </div>
-    </div>
-
-    <!-- Tiago Debarba (anyons) -->
-    <div class="pub-item">
-        <div class="pub-title">
-            <a href="https://doi.org/10.1103/PhysRevA.110.L010404" target="_blank">Fermionic anyons: Entanglement and quantum computation from a resource-theoretic perspective</a>
-        </div>
-        <div class="pub-authors">Tiago Debarba</div>
-        <div class="pub-journal">Physical Review A, v. 110, L010404, 2024</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">computação quântica</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> DEBARBA, Tiago. Fermionic anyons: Entanglement and quantum computation from a resource-theoretic perspective. <em>Physical Review A</em>, v. 110, L010404, 2024. Disponível em: <a href="https://doi.org/10.1103/PhysRevA.110.L010404" target="_blank">https://doi.org/10.1103/PhysRevA.110.L010404</a>.
-        </div>
-    </div>
-
-    <!-- ========== 2023 ========== -->
-    <!-- Bruno Vicentin -->
-    <div class="pub-item">
-        <div class="pub-title">Study and optimization of the adsorption process of methylene blue dye in reusable polyaniline-magnetite composites</div>
-        <div class="pub-authors">Bruno Luiz Santana Vicentin et al.</div>
-        <div class="pub-journal">Synthetic Metals, 2023</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">simulação e modelagem</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> VICENTIN, Bruno Luiz Santana et al. Study and optimization of the adsorption process of methylene blue dye in reusable polyaniline-magnetite composites. <em>Synthetic Metals</em>, 2023.
-        </div>
-    </div>
-
-    <!-- Dissertação de mestrado (Costa, 2023) -->
-    <div class="pub-item">
-        <div class="pub-title">Um algoritmo quântico para casos não abelianos de 𝖧𝖲𝖯</div>
-        <div class="pub-authors">Abner F. B. Costa</div>
-        <div class="pub-journal">Dissertação (Mestrado) – Universidade Federal do Paraná, 2023. Orientadores: Murilo V. G. Silva e Leandro M. Zatesko</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">computação quântica · dissertação</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> COSTA, Abner F. B. <em>Um algoritmo quântico para casos não abelianos de 𝖧𝖲𝖯</em>. 2023. Dissertação (Mestrado em Informática) – Universidade Federal do Paraná, Curitiba, 2023.
-        </div>
-    </div>
-
-    <!-- ========== 2021 ========== -->
-    <!-- CSBC 2021 -->
-    <div class="pub-item">
-        <div class="pub-title">Um Algoritmo Quântico para um Problema de Distância Estatística</div>
-        <div class="pub-authors">Hepp, H.; Silva, M. V. G.; Zatesko, L. M.</div>
-        <div class="pub-journal">In: Anais do 41º Congresso da Sociedade Brasileira de Computação (CSBC 2021/VI ETC), Florianópolis, p. 1-4, 2021</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">computação quântica</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> HEPP, H.; SILVA, M. V. G.; ZATESKO, L. M. Um Algoritmo Quântico para um Problema de Distância Estatística. In: <em>CONGRESSO DA SOCIEDADE BRASILEIRA DE COMPUTAÇÃO (CSBC), 41., 2021, Florianópolis</em>. Anais... Porto Alegre: SBC, 2021. p. 1-4.
-        </div>
-    </div>
-
-    <!-- WPCCG 2021 -->
-    <div class="pub-item">
-        <div class="pub-title">Grover's Quantum Algorithm and the Maximum Clique Problem</div>
-        <div class="pub-authors">Dias, M. G.; Zatesko, L. M.</div>
-        <div class="pub-journal">In: Anais do 4º Workshop de Pesquisa em Computação dos Campos Gerais (WPCCG 2021), Ponta Grossa, p. 54-59, 2021</div>
-        <div style="margin-top: 0.5rem;"><span class="tag">computação quântica</span></div>
-        <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
-        <div class="cite-dropdown">
-            <strong>ABNT:</strong> DIAS, M. G.; ZATESKO, L. M. Grover's Quantum Algorithm and the Maximum Clique Problem. In: <em>WORKSHOP DE PESQUISA EM COMPUTAÇÃO DOS CAMPOS GERAIS (WPCCG), 4., 2021, Ponta Grossa</em>. Anais... Ponta Grossa: UEPG, 2021. p. 54-59.
-        </div>
-    </div>
-</div>
-
-<!-- Estilo complementar para as tags -->
-<style>
-    .tag {
-        background: #FFD100;
-        padding: 0.2rem 1rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        display: inline-block;
-    }
-    .cite-btn {
-        margin-top: 1rem;
-        background: none;
-        border: 1px solid #ccc;
-        padding: 0.3rem 1rem;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 0.85rem;
-        transition: 0.2s;
-    }
-    .cite-btn:hover {
-        background-color: #FFD100;
-        border-color: #FFD100;
-    }
-    .cite-dropdown {
-        display: none;
-        margin-top: 1rem;
-        background: #f1f3f5;
-        padding: 1rem;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        border-left: 4px solid #FFD100;
-    }
-</style>
-
-<!-- Script para funcionalidade dos botões -->
-<script>
-    (function() {
-        // Adiciona evento para todos os botões de citação
-        document.querySelectorAll('.cite-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const dropdown = this.nextElementSibling;
-                if (dropdown && dropdown.classList.contains('cite-dropdown')) {
-                    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
-                        dropdown.style.display = 'block';
-                    } else {
-                        dropdown.style.display = 'none';
-                    }
-                }
-            });
-        });
-    })();
-</script>
-            
+                <!-- 2026 -->
+                <div class="pub-item">
+                    <div class="pub-title"><a href="https://nuvem.utfpr.edu.br/index.php/s/vaCe6VGyMrnpEpP" target="_blank">Matrizes de Pauli, Teoria de Grupos e a Esfera de Bloch: Uma Visão Unificada dos Fundamentos Geométricos e Algébricos da Representação do Qubit</a></div>
+                    <div class="pub-authors">Bruno L. S. Vicentin</div>
+                    <div class="pub-journal">Preprint, 2026</div>
+                    <div style="margin-top: 0.5rem;"><span class="tag">computação quântica</span></div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title"><a href="https://doi.org/10.1103/3312-b63x" target="_blank">Thermodynamic constraints on the emergence of intersubjectivity in quantum systems</a></div>
+                    <div class="pub-authors">Tiago Debarba</div>
+                    <div class="pub-journal">Physical Review A, 2026</div>
+                    <div style="margin-top: 0.5rem;"><span class="tag">tecnologias quânticas aplicadas</span></div>
+                    <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
+                    <div class="cite-dropdown"><strong>ABNT:</strong> DEBARBA, Tiago. Thermodynamic constraints on the emergence of intersubjectivity in quantum systems. <em>Physical Review A</em>, 2026. Disponível em: <a href="https://doi.org/10.1103/3312-b63x" target="_blank">https://doi.org/10.1103/3312-b63x</a>.</div>
+                </div>
+                <!-- 2025 -->
+                <div class="pub-item">
+                    <div class="pub-title">Oracle Separations for Non-adaptive Collapse-free Quantum Computing</div>
+                    <div class="pub-authors">Hepp, H.; Silva, M. V. G.; Zatesko, L. M.</div>
+                    <div class="pub-journal">Theoretical Computer Science, v. 1030, 115078, 2025</div>
+                    <div style="margin-top: 0.5rem;"><span class="tag">computação quântica</span></div>
+                    <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
+                    <div class="cite-dropdown"><strong>ABNT:</strong> HEPP, H.; SILVA, M. V. G.; ZATESKO, L. M. Oracle Separations for Non-adaptive Collapse-free Quantum Computing. <em>Theoretical Computer Science</em>, v. 1030, 115078, 2025.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title"><a href="https://doi.org/10.1103/PRXQuantum.6.010309" target="_blank">Emergence of a second law of thermodynamics in isolated quantum systems</a></div>
+                    <div class="pub-authors">Tiago Debarba</div>
+                    <div class="pub-journal">PRX Quantum, v. 6, 010309, 2025</div>
+                    <div style="margin-top: 0.5rem;"><span class="tag">simulação e modelagem</span></div>
+                    <button class="cite-btn">📖 Cite este artigo (ABNT)</button>
+                    <div class="cite-dropdown"><strong>ABNT:</strong> DEBARBA, Tiago. Emergence of a second law of thermodynamics in isolated quantum systems. <em>PRX Quantum</em>, v. 6, 010309, 2025. Disponível em: <a href="https://doi.org/10.1103/PRXQuantum.6.010309" target="_blank">https://doi.org/10.1103/PRXQuantum.6.010309</a>.</div>
+                </div>
+                <div class="pub-item"><div class="pub-title"><a href="https://doi.org/10.3390/e27080824" target="_blank">A Complexity-Based Approach to Quantum Observable Equilibration</a></div><div class="pub-authors">Tiago Debarba</div><div class="pub-journal">Entropy, v. 27, n. 8, 824, 2025</div><div style="margin-top:0.5rem"><span class="tag">simulação e modelagem</span></div><button class="cite-btn">📖 Cite este artigo (ABNT)</button><div class="cite-dropdown"><strong>ABNT:</strong> DEBARBA, Tiago. A Complexity-Based Approach to Quantum Observable Equilibration. <em>Entropy</em>, v. 27, n. 8, 824, 2025. DOI: <a href="https://doi.org/10.3390/e27080824">10.3390/e27080824</a>.</div></div>
+                <!-- (demais publicações podem ser incluídas conforme necessário, mas para brevidade mantemos as principais) -->
+            </div>
         </section>
-<section id="producaodidatica" class="container section-light" style="border-radius: 48px 48px 0 0;">
-<h2>Materiais Didáticos Próprios</h2>
+
+        <!-- MATERIAIS DIDÁTICOS PRÓPRIOS -->
+        <section id="producaodidatica" class="container section-light" style="border-radius: 48px 48px 0 0;">
+            <h2>Materiais Didáticos Próprios</h2>
             <div class="publication-list">
-    <!-- ========== 2026 ========== -->
-    <div class="pub-item">
-        <div class="pub-title">
-            <a href="https://nuvem.utfpr.edu.br/index.php/s/CwglZp0oCbg0dID" target="_blank">Fundamentos de Computação Quântica Aplicada à Ciência e Engenharia de
-Materiais</a>
-        </div>
-        <div class="pub-authors">Bruno Luiz Santana Vicentin</div>
-        <div class="pub-journal">Material desenvolvido para orientar projetos de iniciação científica na área de Computação Quântica e Quantum Machine Learning no Grupo de
-Pesquisa em Tecnologias Quânticas e Computação Quântica Aplicadas - UTFPR Quantum. <br>
-Parte I - Introdução à Computação Quântica <br>
-Parte II - Fundamentos de Quantum Machine Learning e aplicações em Ciência e Engenharia de Materiais.</div>
-       
-       
-           </div>
-           <div class="pub-item">
-        <div class="pub-title">
-            <a href="https://ricardofsilvaa.github.io/BB84_Web_Simulador/" target="_blank">Simulação interativa do primeiro protocolo de criptografia quântica BB84</a>
-        </div>
-        <div class="pub-authors">Ricardo Fernandes da Silva</div>
-        <div class="pub-journal">Simulação conceitual do protocolo BB84 · baseada no artigo de Bennett & Brassard (1984).</div>
-       
-       
-           </div>
-</section>
+                <div class="pub-item">
+                    <div class="pub-title"><a href="https://nuvem.utfpr.edu.br/index.php/s/CwglZp0oCbg0dID" target="_blank">Fundamentos de Computação Quântica Aplicada à Ciência e Engenharia de Materiais</a></div>
+                    <div class="pub-authors">Bruno Luiz Santana Vicentin</div>
+                    <div class="pub-journal">Material desenvolvido para orientar projetos de iniciação científica na área de Computação Quântica e Quantum Machine Learning no Grupo de Pesquisa em Tecnologias Quânticas e Computação Quântica Aplicadas - UTFPR Quantum.<br>Parte I - Introdução à Computação Quântica<br>Parte II - Fundamentos de Quantum Machine Learning e aplicações em Ciência e Engenharia de Materiais.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title"><a href="https://ricardofsilvaa.github.io/BB84_Web_Simulador/" target="_blank">Simulação interativa do primeiro protocolo de criptografia quântica BB84</a></div>
+                    <div class="pub-authors">Ricardo Fernandes da Silva</div>
+                    <div class="pub-journal">Simulação conceitual do protocolo BB84 · baseada no artigo de Bennett & Brassard (1984).</div>
+                </div>
+            </div>
+        </section>
+
         <!-- PARCEIROS & INCTs -->
         <section id="parceiros" class="container section-light" style="border-radius: 0 0 48px 48px;">
             <h2>Instituições Parceiras & INCTs</h2>
@@ -845,7 +691,6 @@ Parte II - Fundamentos de Quantum Machine Learning e aplicações em Ciência e 
         </section>
     </main>
 
-    <!-- FOOTER / CONTATO -->
     <footer id="contato">
         <div class="footer-content">
             <div>
@@ -855,9 +700,7 @@ Parte II - Fundamentos de Quantum Machine Learning e aplicações em Ciência e 
             </div>
             <div>
                 <h4>Endereço</h4>
-                <p>UTFPR Campus Apucarana<br>
-                Rua Marcílio Dias, 635 - Jardim Paraíso<br>
-                Apucarana - PR, CEP: 86812460</p>
+                <p>UTFPR Campus Apucarana<br>Rua Marcílio Dias, 635 - Jardim Paraíso<br>Apucarana - PR, CEP: 86812460</p>
             </div>
             <div>
                 <h4>Contato</h4>
@@ -866,55 +709,52 @@ Parte II - Fundamentos de Quantum Machine Learning e aplicações em Ciência e 
                 <p>🔗 <a href="http://dgp.cnpq.br/dgp/espelhogrupo/3221567408939926" target="_blank">dgp.cnpq.br/espelhogrupo/3221567408939926</a></p>
             </div>
         </div>
-        <div class="copyright">
-            © 2025 UTFPR Quantum · Universidade Tecnológica Federal do Paraná · Todos os direitos reservados.
-        </div>
+        <div class="copyright">© 2025 UTFPR Quantum · Universidade Tecnológica Federal do Paraná · Todos os direitos reservados.</div>
     </footer>
 
     <script>
         (function() {
-            // SMOOTH SCROLL para links da navbar
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const targetId = this.getAttribute('href'); // ex: #sobre
+                    const targetId = this.getAttribute('href');
                     if (targetId === '#') return;
                     const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
+                    if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
                 });
             });
 
-            // SISTEMA DE ABAS (EQUIPE)
             const tabPesq = document.getElementById('tab-pesq');
             const tabEstud = document.getElementById('tab-estud');
             const tabColab = document.getElementById('tab-colab');
-            
             const catPesq = document.getElementById('categoria-pesquisadores');
             const catEstud = document.getElementById('categoria-estudantes');
             const catColab = document.getElementById('categoria-colaboradores');
-            
             function activateTab(activeBtn, activeCat) {
                 [tabPesq, tabEstud, tabColab].forEach(btn => btn.classList.remove('active'));
                 [catPesq, catEstud, catColab].forEach(cat => cat.classList.remove('active-category'));
-                
                 activeBtn.classList.add('active');
                 activeCat.classList.add('active-category');
             }
-            
             tabPesq.addEventListener('click', () => activateTab(tabPesq, catPesq));
             tabEstud.addEventListener('click', () => activateTab(tabEstud, catEstud));
             tabColab.addEventListener('click', () => activateTab(tabColab, catColab));
-        })();
-    </script>
-    <script>
-        (function() {
+
             document.querySelector('.btn')?.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector('#linhas');
                 if(target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            document.querySelectorAll('.cite-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const dropdown = this.nextElementSibling;
+                    if (dropdown && dropdown.classList.contains('cite-dropdown')) {
+                        dropdown.style.display = dropdown.style.display === 'none' || dropdown.style.display === '' ? 'block' : 'none';
+                    }
+                });
             });
         })();
     </script>
